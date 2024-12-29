@@ -17,6 +17,8 @@ class TareaViewHolder(view: View, private val onDeleteClick: (Int) -> Unit) :
 
     val nombreTarea = view.findViewById<TextView>(R.id.textViewTarea)
     val descripcion = view.findViewById<TextView>(R.id.textViewDescripcion)
+    val fechaTarea: TextView = view.findViewById(R.id.textViewFecha)
+    val horaTarea: TextView = view.findViewById(R.id.textViewHora)
     val deleteButton = view.findViewById<ImageButton>(R.id.imageButtonDelete)
     val checkBoxCompletada: CheckBox = view.findViewById(R.id.checkBoxCompletada)
 
@@ -25,6 +27,8 @@ class TareaViewHolder(view: View, private val onDeleteClick: (Int) -> Unit) :
 
         nombreTarea.text = tareaModel.nombreTarea
         descripcion.text = tareaModel.descripcionTarea
+        fechaTarea.text = tareaModel.fecha
+        horaTarea.text = tareaModel.hora
         checkBoxCompletada.isChecked = tareaModel.isCompleted
 
         updateTextStyle(tareaModel.isCompleted)

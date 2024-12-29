@@ -3,8 +3,10 @@ package com.vnavpal901.miniagenda
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.TimePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -74,6 +76,8 @@ class MainActivity : AppCompatActivity() {
         val dialogView = inflater.inflate(R.layout.popup_add_tarea, null)
         val editTextNuevaTarea = dialogView.findViewById<EditText>(R.id.editTextNombreTarea)
         val editTextDescripcion = dialogView.findViewById<EditText>(R.id.editTextDescripcion)
+        val datePicker = dialogView.findViewById<DatePicker>(R.id.datePicker)
+        val timePicker = dialogView.findViewById<TimePicker>(R.id.timePicker)
         val buttonAddTask = dialogView.findViewById<Button>(R.id.buttonAddTask)
 
         val dialog = AlertDialog.Builder(this)
@@ -83,8 +87,19 @@ class MainActivity : AppCompatActivity() {
         buttonAddTask.setOnClickListener {
             val nuevaTarea = editTextNuevaTarea.text.toString()
             val descripcion = editTextDescripcion.text.toString()
+            val dia = datePicker.dayOfMonth
+            val mes = datePicker.month + 1
+            val anio = datePicker.year
+            val hora = timePicker.hour
+            val minuto = timePicker.minute
+            val fecha = "$dia/$mes/$anio"
+            val horaFormateada = String.format("%02d:%02d", hora, minuto)
+
+
+
+
             if (nuevaTarea.isNotEmpty()) {
-                addItem(Tarea(nuevaTarea, descripcion))
+                addItem(Tarea(nuevaTarea, descripcion, fecha, horaFormateada))
                 dialog.dismiss()
             }
         }
