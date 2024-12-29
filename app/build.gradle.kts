@@ -46,5 +46,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.gson)
+    implementation(libs.glide) // Usar la referencia añadida en `libs.versions.toml`
+    annotationProcessor(libs.glide.compiler) // Usar la referencia añadida en `libs.versions.toml`
+
 
 }

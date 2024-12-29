@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.TimePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.vnavpal901.miniagenda.adapter.TareaAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +29,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val imageViewHeader = findViewById<ImageView>(R.id.imageViewHeader)
+        Glide.with(this).asGif().load(R.drawable.agenda_animada2).into(imageViewHeader)
 
         preferencesHelper = PreferencesHelper(this)
         listaTareaMutable = preferencesHelper.loadTasks().toMutableList()
