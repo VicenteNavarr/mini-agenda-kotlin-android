@@ -16,6 +16,7 @@ class TareaViewHolder(view: View, private val onDeleteClick: (Int) -> Unit) :
     RecyclerView.ViewHolder(view) {
 
     val nombreTarea = view.findViewById<TextView>(R.id.textViewTarea)
+    val descripcion = view.findViewById<TextView>(R.id.textViewDescripcion)
     val deleteButton = view.findViewById<ImageButton>(R.id.imageButtonDelete)
     val checkBoxCompletada: CheckBox = view.findViewById(R.id.checkBoxCompletada)
 
@@ -23,6 +24,7 @@ class TareaViewHolder(view: View, private val onDeleteClick: (Int) -> Unit) :
     fun render(tareaModel: Tarea) {
 
         nombreTarea.text = tareaModel.nombreTarea
+        descripcion.text = tareaModel.descripcionTarea
         checkBoxCompletada.isChecked = tareaModel.isCompleted
 
         updateTextStyle(tareaModel.isCompleted)

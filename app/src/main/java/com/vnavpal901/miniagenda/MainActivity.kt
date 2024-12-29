@@ -55,7 +55,8 @@ class MainActivity : AppCompatActivity() {
     private fun showAddTaskDialog() {
         val inflater = LayoutInflater.from(this)
         val dialogView = inflater.inflate(R.layout.popup_add_tarea, null)
-        val editTextNuevaTarea = dialogView.findViewById<EditText>(R.id.editTextNuevaTarea)
+        val editTextNuevaTarea = dialogView.findViewById<EditText>(R.id.editTextNombreTarea)
+        val editTextDescripcion = dialogView.findViewById<EditText>(R.id.editTextDescripcion)
         val buttonAddTask = dialogView.findViewById<Button>(R.id.buttonAddTask)
 
         val dialog = AlertDialog.Builder(this)
@@ -64,8 +65,9 @@ class MainActivity : AppCompatActivity() {
 
         buttonAddTask.setOnClickListener {
             val nuevaTarea = editTextNuevaTarea.text.toString()
+            val descripcion = editTextDescripcion.text.toString()
             if (nuevaTarea.isNotEmpty()) {
-                addItem(Tarea(nuevaTarea))
+                addItem(Tarea(nuevaTarea, descripcion))
                 dialog.dismiss()
             }
         }

@@ -6,7 +6,7 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextNuevaTarea"
+        android:id="@+id/editTextNombreTarea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nueva tarea"
@@ -14,9 +14,19 @@
         android:padding="16dp"
         android:minHeight="48dp"/>
 
+    <EditText
+        android:id="@+id/editTextDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción"
+        android:inputType="text"
+        android:padding="16dp"
+        android:minHeight="48dp"
+         />
+
     <Button
         android:id="@+id/buttonAddTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Añadir"/>
+        android:text="Añadir" />
 </LinearLayout>
