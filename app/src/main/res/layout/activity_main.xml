@@ -4,58 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#3F51B5"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <!-- Encabezado -->
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#FFFFFF" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="89dp"
+        android:background="#00B61414"
+        android:backgroundTint="#00BF2020"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/imageViewHeader"
-            android:layout_width="32dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/white"
             app:srcCompat="@drawable/agenda_animada2" />
 
         <TextView
             android:id="@+id/headerText"
-            android:layout_width="338dp"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/aldrich"
             android:gravity="center"
-            android:padding="16dp"
-            android:text="Mini Agenda"
-            android:textSize="24sp" />
+            android:padding="20dp"
+            android:shadowColor="#878787"
+            android:text="To-Do-List"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#2196F3"
+            android:textSize="38sp"
+            android:textStyle="bold"
+            android:typeface="normal" />
 
     </LinearLayout>
 
     <!-- Contenedor principal -->
+    <TextView
+        android:id="@+id/textViewNoTasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="@font/aldrich"
+        android:padding="16dp"
+        android:text="No hay tareas actualmente.\nPuedes añadir una pulsando el botón de 'Añadir Tarea'"
+        android:textAlignment="center"
+        android:textColor="#2196F3"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerTarea"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="8dp"/>
-
-
-    <TextView
-        android:id="@+id/textViewNoTasks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No hay tareas actualmente"
-        android:gravity="center"
-        android:visibility="gone"
-        android:padding="16dp"/>
+        android:background="#FFFFFF"
+        android:padding="8dp" />
 
 
     <!-- Pie -->
     <Button
         android:id="@+id/buttonAddTask"
-        android:layout_width="271dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#2196F3"
+        android:fontFamily="@font/aldrich"
+        android:insetLeft="5dp"
+        android:insetRight="5dp"
         android:padding="16dp"
-        android:text="Añadir" />
+        android:text="AÑADIR TAREA"
+        app:cornerRadius="6dp" />
 </LinearLayout>

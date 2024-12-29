@@ -21,6 +21,7 @@ class TareaViewHolder(view: View, private val onDeleteClick: (Int) -> Unit) :
     val horaTarea: TextView = view.findViewById(R.id.textViewHora)
     val deleteButton = view.findViewById<ImageButton>(R.id.imageButtonDelete)
     val checkBoxCompletada: CheckBox = view.findViewById(R.id.checkBoxCompletada)
+    private val fondo: View = view.findViewById(R.id.viewFondo)
 
     //esta función se va a llamar por cada item de la lista
     fun render(tareaModel: Tarea) {
@@ -49,8 +50,11 @@ class TareaViewHolder(view: View, private val onDeleteClick: (Int) -> Unit) :
     private fun updateTextStyle(isCompleted: Boolean) {
         if (isCompleted) {
             nombreTarea.paintFlags = nombreTarea.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            fondo.setBackgroundResource(R.drawable.rounded_corners_completed)
         } else {
             nombreTarea.paintFlags = nombreTarea.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            fondo.setBackgroundResource(R.drawable.rounded_corners)
+
         }
     }
 

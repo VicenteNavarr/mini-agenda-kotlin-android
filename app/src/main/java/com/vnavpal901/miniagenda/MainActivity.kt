@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -101,12 +102,16 @@ class MainActivity : AppCompatActivity() {
             val horaFormateada = String.format("%02d:%02d", hora, minuto)
 
 
-
-
-            if (nuevaTarea.isNotEmpty()) {
+            if (nuevaTarea.isEmpty()) {
+                Toast.makeText(this, "Es necesario rellenar el nombre de la tarea", Toast.LENGTH_SHORT).show()
+            } else if (descripcion.isEmpty()) {
+                Toast.makeText(this, "Es necesario rellenar la descripción de la tarea", Toast.LENGTH_SHORT).show()
+            } else {
                 addItem(Tarea(nuevaTarea, descripcion, fecha, horaFormateada))
                 dialog.dismiss()
             }
+
+
         }
 
         dialog.show()
