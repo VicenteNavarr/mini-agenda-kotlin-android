@@ -1,6 +1,10 @@
 package com.vnavpal901.miniagenda
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initRecyclerView()//ejecutamos funcion
+        initAddButton() // Inicializa el botón de añadir tarea
 
     }
 
@@ -34,6 +39,49 @@ class MainActivity : AppCompatActivity() {
             recyclerView.adapter = adapter
 
     }
+
+
+    private fun initAddButton() {
+        val addButton = findViewById<Button>(R.id.buttonAddTask)
+        addButton.setOnClickListener {
+            showAddTaskDialog()
+        }
+    }
+
+
+
+
+
+    private fun showAddTaskDialog() {
+        val inflater = LayoutInflater.from(this)
+        val dialogView = inflater.inflate(R.layout.popup_add_tarea, null)
+        val editTextNuevaTarea = dialogView.findViewById<EditText>(R.id.editTextNuevaTarea)
+        val buttonAddTask = dialogView.findViewById<Button>(R.id.buttonAddTask)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        buttonAddTask.setOnClickListener {
+            val nuevaTarea = editTextNuevaTarea.text.toString()
+            if (nuevaTarea.isNotEmpty()) {
+                addItem(Tarea(nuevaTarea))
+                dialog.dismiss()
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun addItem(tarea: Tarea) {
+        listaTareaMutable.add(tarea)
+        adapter.notifyItemInserted(listaTareaMutable.size - 1)
+    }
+
+
+
+
+
 
     private fun removeItem(position: Int) {
         adapter.removeItem(position)

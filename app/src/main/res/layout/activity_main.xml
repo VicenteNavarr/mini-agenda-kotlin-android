@@ -27,7 +27,7 @@
 
     <!-- Pie -->
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/buttonAddTask"
         android:layout_width="271dp"
         android:layout_height="wrap_content"
         android:padding="16dp"
