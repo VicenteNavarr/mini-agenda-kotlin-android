@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private var listaTareaMutable: MutableList<Tarea> = ListaTareas.listaTareas.toMutableList()
     private lateinit var adapter: TareaAdapter
+    private lateinit var textViewNoTasks: TextView
 
 
 
@@ -26,7 +28,17 @@ class MainActivity : AppCompatActivity() {
         initRecyclerView()//ejecutamos funcion
         initAddButton() // Inicializa el botón de añadir tarea
 
+        textViewNoTasks = findViewById(R.id.textViewNoTasks)
+        updateNoTasksMessage()
+
+
+
     }
+
+
+
+
+
 
     //funcion para llamar el adapter
    private fun initRecyclerView(){
@@ -78,6 +90,7 @@ class MainActivity : AppCompatActivity() {
     private fun addItem(tarea: Tarea) {
         listaTareaMutable.add(tarea)
         adapter.notifyItemInserted(listaTareaMutable.size - 1)
+        updateNoTasksMessage()
     }
 
 
@@ -87,8 +100,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun removeItem(position: Int) {
         adapter.removeItem(position)
+        updateNoTasksMessage()
     }
 
+    private fun updateNoTasksMessage() {
+        if (listaTareaMutable.isEmpty()) {
+            textViewNoTasks.visibility = TextView.VISIBLE
+        } else {
+            textViewNoTasks.visibility = TextView.GONE
+        }
+    }
 
 
 
