@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private var listaTareaMutable: MutableList<Tarea> = ListaTareas.listaTareas.toMutableList()
     private lateinit var adapter: TareaAdapter
     private lateinit var textViewNoTasks: TextView
+    private lateinit var preferencesHelper: PreferencesHelper
 
 
 
@@ -24,6 +25,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        preferencesHelper = PreferencesHelper(this)
+        listaTareaMutable = preferencesHelper.loadTasks().toMutableList()
+
 
         initRecyclerView()//ejecutamos funcion
         initAddButton() // Inicializa el botón de añadir tarea
@@ -91,6 +96,7 @@ class MainActivity : AppCompatActivity() {
         listaTareaMutable.add(tarea)
         adapter.notifyItemInserted(listaTareaMutable.size - 1)
         updateNoTasksMessage()
+        preferencesHelper.saveTasks(listaTareaMutable)
     }
 
 
@@ -101,6 +107,7 @@ class MainActivity : AppCompatActivity() {
     private fun removeItem(position: Int) {
         adapter.removeItem(position)
         updateNoTasksMessage()
+        preferencesHelper.saveTasks(listaTareaMutable)
     }
 
     private fun updateNoTasksMessage() {
